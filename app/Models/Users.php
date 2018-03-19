@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 
 class Users {
 
-    private $tableName = 'users';
+    private $tableName = 'subjects';
 
     public function getUsers() {
         return DB::table($this->tableName)->get();
