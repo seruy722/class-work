@@ -19,16 +19,14 @@ class ProfileController extends Controller {
 
     public function insert(Request $request) {
 
-        $all = $request->all();
-        unset($all['_token']);
-        (new Users)->insert([$all]);
+        $data = $request->except('_token');
+        (new Users)->insert([$data]);
         return redirect()->route('form.index');
     }
 
     public function add(Request $request, $id) {
-        $user = $request->all();
-        unset($user['_token']);
-        (new Users)->update($id, $user);
+        $data = $request->expect('_token');
+        (new Users)->update($id, $data);
         return redirect()->route('form.index');
     }
 
@@ -37,8 +35,7 @@ class ProfileController extends Controller {
     }
 
     public function delete($id) {
-       (new Users)->delete($id);
-
+        (new Users)->delete($id);
         return redirect()->route('form.index');
     }
 

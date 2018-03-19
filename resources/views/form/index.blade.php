@@ -16,4 +16,6 @@
     
 </table>
  {{$users->links()}}
+ {{$users->count()}}
+ {{$users->total()}}
 @endsection
