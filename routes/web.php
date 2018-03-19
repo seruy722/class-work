@@ -11,15 +11,18 @@
   |
  */
 
+Route::group(['prefix' => 'form'], function() {
+    Route::get('index', 'ProfileController@index')->name('form.index');
 
-Route::get('form/index', 'ProfileController@index')->name('form.index');
+    Route::post('insert', 'ProfileController@insert')->name('form.insert');
 
-Route::post('form/insert', 'ProfileController@insert')->name('form.insert');
+    Route::get('create', 'ProfileController@create')->name('form.create');
 
-Route::get('form/create', 'ProfileController@create')->name('form.create');
+    Route::get('/{id}/update', 'ProfileController@update')->name('form.update');
 
-Route::get('form/{id}/update', 'ProfileController@update')->name('form.update');
+    Route::post('/{id}/add', 'ProfileController@add')->name('form.add');
 
-Route::post('form/{id}/add', 'ProfileController@add')->name('form.add');
+    Route::get('/{id}/delete', 'ProfileController@delete')->name('form.delete');
+});
 
-Route::get('form/{id}/delete', 'ProfileController@delete')->name('form.delete');
+

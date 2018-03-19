@@ -9,9 +9,7 @@ use App\Models\Users;
 class ProfileController extends Controller {
 
     public function index() {
-        $users = (new Users)->getUsers();
-
-        return view('form.index', ['users' => $users]);
+        return view('form.index', ['users' => (new Users)->paging(15)]);
     }
 
     public function create() {
@@ -23,25 +21,23 @@ class ProfileController extends Controller {
 
         $all = $request->all();
         unset($all['_token']);
-        $ins = (new Users)->insert([$all]);
+        (new Users)->insert([$all]);
         return redirect()->route('form.index');
     }
 
     public function add(Request $request, $id) {
         $user = $request->all();
         unset($user['_token']);
-        $ins = (new Users)->update($id, $user);
+        (new Users)->update($id, $user);
         return redirect()->route('form.index');
     }
 
     public function update($id) {
-        $user = (new Users)->getUser($id);
-
-        return view('form.update', ['user' => $user]);
+        return view('form.update', ['user' => (new Users)->getUser($id)]);
     }
 
     public function delete($id) {
-        $user = (new Users)->delete($id);
+       (new Users)->delete($id);
 
         return redirect()->route('form.index');
     }

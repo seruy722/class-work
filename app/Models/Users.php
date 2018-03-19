@@ -27,5 +27,8 @@ class Users {
     public function delete($id) {
         return DB::table($this->tableName)->where('id', $id)->delete();
     }
+    public function paging($count) {
+        return DB::table($this->tableName)->paginate($count);
+    }
 
 }
