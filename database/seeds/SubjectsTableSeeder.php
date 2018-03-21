@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\Users;
+use App\Subject;
 
 class SubjectsTableSeeder extends Seeder {
 
@@ -11,8 +11,9 @@ class SubjectsTableSeeder extends Seeder {
      * @return void
      */
     public function run() {
-        for ($i = 0; $i < 50; $i++) {
-            (new Users)->insert([
+        Subject::truncate();
+        for ($i = 0; $i < 20; $i++) {
+            Subject::create([
                 'name' => str_random(10),
                 'teacher_fio' => str_random(10) . '@gmail.com',
                 'rating' => rand(0, 200),

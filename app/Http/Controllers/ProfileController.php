@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Users;
+use App\Subject;
 
 class ProfileController extends Controller {
 
     public function index() {
-        return view('form.index', ['users' => (new Users)->paging(15)]);
+        $sub = (new Subject);
+        return view('form.index', ['users' => Subject::paginate(15),'sub'=>$sub]);
     }
 
     public function create() {
@@ -20,22 +21,22 @@ class ProfileController extends Controller {
     public function insert(Request $request) {
 
         $data = $request->except('_token');
-        (new Users)->insert([$data]);
+        Subject::create($data);
         return redirect()->route('form.index');
     }
 
     public function add(Request $request, $id) {
-        $data = $request->expect('_token');
-        (new Users)->update($id, $data);
+        $data = $request->except('_token');
+        Subject::where('id', $id)->update($data);
         return redirect()->route('form.index');
     }
 
     public function update($id) {
-        return view('form.update', ['user' => (new Users)->getUser($id)]);
+        return view('form.update', ['user' => Subject::findOrFail($id)]);
     }
 
     public function delete($id) {
-        (new Users)->delete($id);
+        Subject::where('id', $id)->delete();
         return redirect()->route('form.index');
     }
 

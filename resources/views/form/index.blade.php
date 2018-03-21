@@ -7,8 +7,8 @@
     @foreach($users as $user)
     <tr>
         <td>{{ $user->id}}</td>
-        <td>{{ $user->login}}</td>
-        <td>{{ $user->email}}</td>
+        <td>{{ $user->name}}</td>
+        <td>{{ $user->teacher_fio}}</td>
         <td><a href="{{ route('form.update',$user->id) }}">Редактировать</a></td>
         <td><a href="{{ route('form.delete',$user->id) }}">Удалить</a></td>
     </tr>
@@ -16,6 +16,7 @@
     
 </table>
  {{$users->links()}}
- {{$users->count()}}
- {{$users->total()}}
+     @foreach($sub as $user)
+        {{$user}}
+    @endforeach
 @endsection

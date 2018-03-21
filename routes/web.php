@@ -25,4 +25,3 @@ Route::group(['prefix' => 'form'], function() {
     Route::get('/{id}/delete', 'ProfileController@delete')->name('form.delete');
 });
 
-
