@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
+
 class CheckRole {
 
     /**
@@ -14,9 +15,9 @@ class CheckRole {
      * @return mixed
      */
     public function handle($request, Closure $next, $role) {
-        if(Auth::check()){
+        if (Auth::check()) {
             $user = Auth::user();
-            if($user->role == $role){
+            if ($user->role == $role) {
                 return $next($request);
             }
         }
