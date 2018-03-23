@@ -1,9 +1,9 @@
-@extends('layout')
+@extends('layouts.app')
 
 
 @section('content')
- <p><a href="{{ route('form.create') }}">Create</a></p>
-<table>
+ <p><a href="{{ route('form.create') }}">Создать</a></p>
+ <table class="table-striped  table">
     @foreach($users as $user)
     <tr>
         <td>{{ $user->id}}</td>

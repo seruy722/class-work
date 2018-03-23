@@ -16,12 +16,16 @@ Route::group(['prefix' => 'form'], function() {
 
     Route::post('insert', 'ProfileController@insert')->name('form.insert');
 
-    Route::get('create', 'ProfileController@create')->name('form.create');
+    Route::get('create', 'ProfileController@create')->name('form.create')->middleware('CheckRole:user');
 
-    Route::get('/{id}/update', 'ProfileController@update')->name('form.update');
+    Route::get('/{id}/update', 'ProfileController@update')->name('form.update')->middleware('CheckAge','auth');
 
     Route::post('/{id}/add', 'ProfileController@add')->name('form.add');
 
     Route::get('/{id}/delete', 'ProfileController@delete')->name('form.delete');
 });
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

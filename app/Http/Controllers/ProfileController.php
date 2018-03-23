@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Subject;
 
+
 class ProfileController extends Controller {
 
     public function index() {
