@@ -27,19 +27,26 @@
     //curl_setopt($curl,CURLOPT_NOBODY,1);
     $result = curl_exec($curl);
     curl_close($curl);
-    $xml   = new SimpleXMLElement($result);;
-
+    $xml   = new SimpleXMLElement($result);
+    foreach($xml as $item){
+        foreach($item as $elem){
+           echo $elem->title . '<br>';
+        }
+    }
+   
     
-var_dump($xml);
-
+    
+    
 $soap = new SoapClient('http://www.cbr.ru/DailyInfoWebServ/DailyInfo.asmx?wsdl');
 $res = $soap->GetCursOnDateXML(['On_date'=>'2018-05-06']);
 
 $str = $res->GetCursOnDateXMLResult->any;
-$xml   = simplexml_load_string($str);
-$array = json_decode(json_encode((array) $xml), true);
-$array = array($xml->getName() => $array);
-
+  $xml   = new SimpleXMLElement($str);
+      foreach($xml as $item){
+        foreach($item as $elem){
+           echo $elem->Vname . '<br>';
+        }
+    }
 
 
 
